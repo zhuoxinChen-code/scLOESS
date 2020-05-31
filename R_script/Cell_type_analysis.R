@@ -5,7 +5,7 @@ library(ggplot2)
 library(tidyverse)
 library(ggrepel)
 library(cowplot)
-library("colorspace")
+library(colorspace)
 library(magrittr)
 library(reshape2)
 
@@ -42,7 +42,7 @@ cas9_larv <- ScoreJackStraw(cas9_larv, dims = 1:20)
 
 ### Clustering
 cas9_larv <- FindNeighbors(cas9_larv, dims = 1:40)
-cas9_larv <- FindClusters(cas9_larv, resolution = 1.8)   
+cas9_larv <- FindClusters(cas9_larv, resolution = 1.8)
 
 ### Run non-linear dimensional reduction
 cas9_larv <- RunTSNE(cas9_larv, dims = 1:40)
@@ -55,5 +55,5 @@ cas9_larv.markers <- FindAllMarkers(cas9_larv, only.pos = TRUE, min.pct = 0.25, 
 
 ### tSNE 
 tsne <- cas9_larv@reductions$tsne@cell.embeddings %>% as.data.frame() %>% rownames_to_column()
-exp.tsne <- Idents(cas9_larv) %>% as.data.frame() %>% rownames_to_column() %>% set_colnames(c("cell", "cluster")) %>% 
-  left_join(tsne,by=c("cell"="rowname")) %>% mutate_if(is.factor, as.character) %>% as_tibble()
+exp.tsne <- Idents(cas9_larv) %>% as.data.frame() %>% rownames_to_column() %>% set_colnames(c("cell", "cluster")) %>%
+  left_join(tsne, by = c("cell" = "rowname")) %>% mutate_if(is.factor, as.character) %>% as_tibble()
