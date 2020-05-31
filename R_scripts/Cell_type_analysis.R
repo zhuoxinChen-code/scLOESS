@@ -1,11 +1,7 @@
 ### Use Seurat for clustering
 
 library(Seurat)
-library(ggplot2)
 library(tidyverse)
-library(ggrepel)
-library(cowplot)
-library(colorspace)
 library(magrittr)
 library(reshape2)
 
